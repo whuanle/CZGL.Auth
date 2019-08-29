@@ -69,8 +69,8 @@ namespace CZGL.Auth.Models
         public static void Init(AuthModel authModel)
         {
             AuthConfig.SecurityKey = authModel.SecurityKey;
-            AuthConfig.Issuer = authModel.Issuer;
-            AuthConfig.Audience = authModel.Audience;
+            AuthConfig.Issuer = authModel.Issuer.ToLower();
+            AuthConfig.Audience = authModel.Audience.ToLower();
 
             AuthConfig.TimeSpan = authModel.TimeSpan;
 

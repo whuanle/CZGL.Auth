@@ -69,6 +69,7 @@ namespace CZGL.Auth.Sample1
 
             app.UseRouting();
 
+
             app.UseAuthentication();
             app.UseAuthorization();
 

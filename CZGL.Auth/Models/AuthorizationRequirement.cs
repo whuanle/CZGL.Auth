@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CZGL.Auth.Sample1.Services
+namespace CZGL.Auth.Services
 {
     /// <summary>
     /// 自定义实现验证需要的信息，数据是全局的

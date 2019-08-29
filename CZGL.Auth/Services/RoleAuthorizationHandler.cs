@@ -15,8 +15,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 
 namespace CZGL.Auth.Services
 {
-    public class RoleAuthorizationHandler<TAuthorizationRequirement> : AuthorizationHandler<TAuthorizationRequirement>
-        where TAuthorizationRequirement : IAuthorizationRequirement
+    public class RoleAuthorizationHandler : AuthorizationHandler<AuthorizationRequirement>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IRolePermission _iRolePermission;
@@ -33,7 +32,7 @@ namespace CZGL.Auth.Services
             hash = new EncryptionHash();
         }
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context,
-            TAuthorizationRequirement requirement)
+            AuthorizationRequirement requirement)
         {
 
             string tokenStr = _httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString();
@@ -76,7 +75,9 @@ namespace CZGL.Auth.Services
                 await _roleEventsHadner.TokenEbnormal(requestUrl, tokenStr);
             }
             var claims = hash.GetClaims(jst);
-
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity();
+            claimsIdentity.AddClaims(claims);
+            context.User.AddIdentity(claimsIdentity);
             // 校验 颁发主体
             var aud = claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Aud).Value;
             if (!(jst.Issuer == AuthConfig.Issuer || aud != AuthConfig.Audience))

@@ -20,13 +20,12 @@ namespace CZGL.Auth.Services
         /// <param name="authModel">验证授权配置</param>
         /// <param name="name">定义策略名称</param>
         /// <returns></returns>
-        public static IServiceCollection AddRoleService<TAuthorizationRequirement>(
+        public static IServiceCollection AddRoleService(
             this IServiceCollection services,
             AuthModel authModel,
-            TAuthorizationRequirement requirement,
+            AuthorizationRequirement requirement,
             string name
             )
-            where TAuthorizationRequirement : IAuthorizationRequirement
         {
 
 
@@ -55,10 +54,9 @@ namespace CZGL.Auth.Services
                 options.TokenValidationParameters = tokenValidationParameters;
                 options.SaveToken = true;
             });
-
-            services.AddSingleton<IAuthorizationHandler, RoleAuthorizationHandler<IAuthorizationRequirement>>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IRolePermission,RolePermission>();
+            services.AddSingleton<IAuthorizationPolicyProvider,AuthorizationPolicyProvider>();
             return services;
         }
     }
