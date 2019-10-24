@@ -9,7 +9,13 @@ namespace CZGL.Auth.Models
     /// </summary>
     public  class ApiPermission
     {
+        /// <summary>
+        /// API名字
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// API地址
+        /// </summary>
         public string Url { get; set; }
     }
 }

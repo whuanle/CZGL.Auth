@@ -72,7 +72,7 @@ namespace CZGL.Auth.Sample1
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+ 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

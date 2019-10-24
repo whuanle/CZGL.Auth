@@ -7,10 +7,10 @@ namespace CZGL.Auth.Services
 {
     public class AuthBuilder
     {
-        private readonly AuthConfigModel authModel;
+        private readonly AuthModel authModel;
         public AuthBuilder()
         {
-            authModel = new AuthConfigModel();
+            authModel = new AuthModel();
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace CZGL.Auth.Services
         /// 构建配置
         /// </summary>
         /// <returns></returns>
-        public AuthConfigModel Builder()
+        public AuthModel Builder()
         {
             return authModel;
         }

@@ -71,7 +71,6 @@ namespace CZGL.Auth.Services
             {
                 sBuilder.Append(data[i].ToString("x2"));
             }
-            md5Hash.Dispose();
             return sBuilder.ToString();
         }
 
@@ -85,8 +84,8 @@ namespace CZGL.Auth.Services
         {
 
             var creds = AuthConfig.SigningCredentials;
-            var tokenkey = new JwtSecurityToken(issuer: AuthConfig.model.Issuer,
-                audience: AuthConfig.model.Audience,
+            var tokenkey = new JwtSecurityToken(issuer: AuthConfig.Issuer,
+                audience: AuthConfig.Audience,
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(20),
                 signingCredentials: creds);
@@ -97,7 +96,7 @@ namespace CZGL.Auth.Services
                 Status = true,
                 Access_Token = tokenstr,
                 Token_Type = JwtBearerDefaults.AuthenticationScheme,
-                Expires_In = AuthConfig.model.TimeSpan.TotalSeconds
+                Expires_In = AuthConfig.TimeSpan.TotalSeconds
             };
         }
 
@@ -110,11 +109,11 @@ namespace CZGL.Auth.Services
         {
             var now = DateTime.UtcNow;
             var jwt = new JwtSecurityToken(
-                issuer: AuthConfig.model.Issuer,
-                audience: AuthConfig.model.Audience,
+                issuer: AuthConfig.Issuer,
+                audience: AuthConfig.Audience,
                 claims: claims,
                 notBefore: now,
-                expires: now.Add(AuthConfig.model.TimeSpan),
+                expires: now.Add(AuthConfig.TimeSpan),
                 signingCredentials: AuthConfig.SigningCredentials
             );
 
@@ -135,7 +134,7 @@ namespace CZGL.Auth.Services
             {
                 status = true,
                 access_token = encodedJwt,
-                expires_in = AuthConfig.model.TimeSpan.TotalMilliseconds,
+                expires_in = AuthConfig.TimeSpan.TotalMilliseconds,
                 token_type = "Bearer"
             };
             return response;
@@ -154,7 +153,7 @@ namespace CZGL.Auth.Services
             {
                 Status = true,
                 Access_Token = encodedJwt,
-                Expires_In = AuthConfig.model.TimeSpan.TotalSeconds,
+                Expires_In = AuthConfig.TimeSpan.TotalSeconds,
                 Token_Type = "Bearer"
             };
             return response;
@@ -187,8 +186,8 @@ namespace CZGL.Auth.Services
             {
                 new Claim(ClaimTypes.Name,userName),
                 new Claim(ClaimTypes.Role,roleName),
-                new Claim(JwtRegisteredClaimNames.Aud,AuthConfig.model.Audience),
-                new Claim(ClaimTypes.Expiration,AuthConfig.model.TimeSpan.TotalSeconds.ToString()),
+                new Claim(JwtRegisteredClaimNames.Aud,AuthConfig.Audience),
+                new Claim(ClaimTypes.Expiration,AuthConfig.TimeSpan.TotalSeconds.ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat,new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString())
             };
             /*

@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CZGL.Auth\CZGL.Auth.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="user.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

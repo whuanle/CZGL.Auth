@@ -1,4 +1,5 @@
-﻿using CZGL.Auth.Models;
+﻿using CZGL.Auth.Interface;
+using CZGL.Auth.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,11 +22,15 @@ namespace CZGL.Auth.Services
         /// <returns></returns>
         public static IServiceCollection AddRoleService(
             this IServiceCollection services,
-            AuthConfigModel authModel,
+            AuthModel authModel,
+            AuthorizationRequirement requirement,
             string name
             )
         {
+
+
             AuthConfig.Init(authModel);
+
 
             // 定义如何生成用户的 Token
             var tokenValidationParameters = AuthConfig.GetTokenValidationParameters();
@@ -35,7 +40,7 @@ namespace CZGL.Auth.Services
             services.AddAuthorization(options =>
                 {
                     options.AddPolicy(name,
-                policy => policy.Requirements.Add(new AuthorizationRequirement()));
+                policy => policy.Requirements.Add(requirement));
 
                     // ↓ 身份认证类型
                 }).AddAuthentication(options =>
@@ -50,6 +55,8 @@ namespace CZGL.Auth.Services
                 options.SaveToken = true;
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IRolePermission,RolePermission>();
+            services.AddSingleton<IAuthorizationPolicyProvider,AuthorizationPolicyProvider>();
             return services;
         }
     }
