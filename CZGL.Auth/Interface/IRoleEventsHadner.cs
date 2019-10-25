@@ -14,63 +14,46 @@ namespace CZGL.Auth.Interface
     {
 
         /// <summary>
-        /// 客户端请求时没有携带 Token
+        /// 授权开始前
         /// </summary>
-        /// <param name="url"></param>
+        /// <param name="httpContext">HttpContext</param>
         /// <returns></returns>
-        Task NoToken(string url);
+        Task Start(object httpContext);
 
         /// <summary>
         /// 客户端携带的 Token 不是有效的 Jwt 令牌，将不能被解析
         /// </summary>
+        /// <param name="eventsInfo">EventsInfo类型</param>
         /// <returns></returns>
-        Task TokenEbnormal(string url, string token);
+        void TokenEbnormal(object eventsInfo);
 
         /// <summary>
         /// 令牌解码后，issuer 或 audience不正确
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="issuer">订阅者</param>
-        /// <param name="audience">颁发者</param>
+        /// <param name="eventsInfo">EventsInfo类型</param>
         /// <returns></returns>
-        Task TokenIssued(string url, string issuer, string audience);
-
-        /// <summary>
-        /// 令牌已经过期
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="IssuedTime">令牌颁发的时间(Unix)</param>
-        /// <param name="expiration">有效时间</param>
-        /// <returns></returns>
-        Task TokenTime(string url, long IssuedTime, long expiration);
+        void TokenIssued(object eventsInfo);
 
         /// <summary>
         /// 用户所属的角色中，均无访问API的权限，即无访问此API的权限
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="userName">用户名</param>
+        /// <param name="eventsInfo">EventsInfo类型</param>
         /// <returns></returns>
-        Task NoPermissions(string url, string userName);
+        void NoPermissions(object eventsInfo);
 
         /// <summary>
         /// 授权成功
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="userName">用户名</param>
-        /// <param name="roleName">授权角色</param>
+        /// <param name="eventsInfo">EventsInfo类型</param>
         /// <returns></returns>
-        Task Authed(string url, string userName, string roleName);
+        void Success(object eventsInfo);
 
         /// <summary>
-        /// 自定义授权
+        /// 授权成功后
         /// </summary>
-        /// <typeparam name="TAuthorizationRequirement"></typeparam>
-        /// <param name="url"></param>
-        /// <param name="claims"></param>
-        /// <param name="requirement"></param>
+        /// <param name="httpContext">HttpContext</param>
         /// <returns></returns>
-        Task Custom<TAuthorizationRequirement>(string url, IEnumerable<Claim> claims, TAuthorizationRequirement requirement)
-            where TAuthorizationRequirement : IAuthorizationRequirement;
+        Task End(object httpContext);
     }
 
 }

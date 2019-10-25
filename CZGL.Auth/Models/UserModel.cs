@@ -13,6 +13,6 @@ namespace CZGL.Auth.Models
         /// <summary>
         /// 所属角色
         /// </summary>
-        public List<string> BeRole { get; set; }
+        public List<string> BeRoles { get; set; }
     }
 }

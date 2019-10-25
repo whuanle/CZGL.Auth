@@ -16,7 +16,7 @@ namespace CZGL.Auth.Models
         /// <summary>
         /// 用于加密的密钥对象
         /// </summary>
-        public static SigningCredentials SigningCredentials=> new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(model.SecurityKey)), SecurityAlgorithms.HmacSha512);
+        public static SigningCredentials SigningCredentials=> new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(model.SecurityKey)), SecurityAlgorithms.HmacSha256);
 
 
         /// <summary>

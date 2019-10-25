@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CZGL.Auth.Models
+namespace CZGL.Auth.Sample2.Models
 {
     public class ResponseModel
     {

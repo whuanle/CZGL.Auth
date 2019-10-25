@@ -21,8 +21,7 @@ namespace CZGL.Auth.Services
         /// <returns></returns>
         public static IServiceCollection AddRoleService(
             this IServiceCollection services,
-            AuthConfigModel authModel,
-            string name
+            AuthConfigModel authModel
             )
         {
             AuthConfig.Init(authModel);
@@ -32,24 +31,19 @@ namespace CZGL.Auth.Services
 
 
             // 导入角色身份认证策略
-            services.AddAuthorization(options =>
-                {
-                    options.AddPolicy(name,
-                policy => policy.Requirements.Add(new AuthorizationRequirement()));
-
-                    // ↓ 身份认证类型
-                }).AddAuthentication(options =>
-                {
-                    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
+            // 导入角色身份认证策略
+            services.AddAuthentication(options=>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
             .AddJwtBearer(options =>
             {
+
                 options.TokenValidationParameters = tokenValidationParameters;
                 options.SaveToken = true;
             });
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             return services;
         }
     }

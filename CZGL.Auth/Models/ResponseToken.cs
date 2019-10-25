@@ -20,7 +20,7 @@ namespace CZGL.Auth.Models
         public string Access_Token { get; set; }
 
         /// <summary>
-        /// 有效时间
+        /// 有效时间(秒)
         /// </summary>
         public double Expires_In { get; set; }
 

@@ -70,7 +70,7 @@ namespace CZGL.Auth.Services
         /// 构建配置
         /// </summary>
         /// <returns></returns>
-        public AuthConfigModel Builder()
+        public AuthConfigModel Build()
         {
             return authModel;
         }

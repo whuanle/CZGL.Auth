@@ -23,7 +23,7 @@ namespace CZGL.Auth.Sample1.Services
         /// 更新一下内存中的用户名及对应的角色
         /// </summary>
         /// <returns></returns>
-        public async Task UpdateUser()
+        public  async Task UpdateUser()
         {
             await Task.Run(()=>
             {

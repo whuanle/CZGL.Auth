@@ -84,13 +84,22 @@ namespace CZGL.Auth.Services
         public ResponseToken BuildToken(Claim[] claims)
         {
 
-            var creds = AuthConfig.SigningCredentials;
-            var tokenkey = new JwtSecurityToken(issuer: AuthConfig.model.Issuer,
+            SigningCredentials creds = AuthConfig.SigningCredentials;
+            JwtSecurityToken tokenkey = new JwtSecurityToken(
+                issuer: AuthConfig.model.Issuer,
                 audience: AuthConfig.model.Audience,
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(20),
-                signingCredentials: creds);
-            var tokenstr = (new JwtSecurityTokenHandler()).WriteToken(tokenkey);
+                signingCredentials: creds); 
+            string tokenstr="";
+            try
+            {
+                tokenstr = new JwtSecurityTokenHandler().WriteToken(tokenkey);
+            }
+           catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
             return new ResponseToken
             {
@@ -220,6 +229,9 @@ namespace CZGL.Auth.Services
         /// <returns></returns>
         public bool IsCanReadToken(string tokenStr)
         {
+            if (!tokenStr.Contains(JwtBearerDefaults.AuthenticationScheme))
+                return false;
+            tokenStr = tokenStr.Remove(0,7);
             bool isCan = jwtSecurityTokenHandler.CanReadToken(tokenStr);
 
             return isCan;
