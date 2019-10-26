@@ -23,7 +23,7 @@ namespace CZGL.Auth.Services
         private ManaRole _manaRole = new ManaRole();
 
         int StatusCode = 401;
-
+        string loginfailed;
         public RoleMiddleware(RequestDelegate next)
         {
             _next = next;
@@ -60,7 +60,7 @@ namespace CZGL.Auth.Services
             if (result == false)
             {
                 context.Response.StatusCode = 401;
-                context.Response.Headers.Add("WWW-Authenticate", new Microsoft.Extensions.Primitives.StringValues("Login authentication failed!"));
+                context.Response.Headers.Add("WWW-Authenticate", new Microsoft.Extensions.Primitives.StringValues(loginfailed));
                 return;
             }
             await _next(context);
@@ -117,6 +117,7 @@ namespace CZGL.Auth.Services
             // 如果是无效的Token
             if (!isCan)
             {
+                loginfailed = AuthConfig.model.scheme.TokenEbnormal;
                 Thread TokenEbnormal = new Thread(new ParameterizedThreadStart(_roleEventsHadner.TokenEbnormal));
                 TokenEbnormal.Start(info);
                 return false;
@@ -133,6 +134,7 @@ namespace CZGL.Auth.Services
 
             if (!(jst.Issuer == AuthConfig.model.Issuer || aud != AuthConfig.model.Audience))
             {
+                loginfailed = AuthConfig.model.scheme.TokenIssued;
                 Thread TokenIssued = new Thread(new ParameterizedThreadStart(_roleEventsHadner.TokenIssued));
                 TokenIssued.Start(info);
                 return false;
@@ -159,6 +161,7 @@ namespace CZGL.Auth.Services
             // 可能后台已经删除了此角色，或者用户被取消此角色
             if (!_manaRole.IsUserToRole(userName, roleName))
             {
+                loginfailed = AuthConfig.model.scheme.NoPermissions;
                 Thread NoPermissions = new Thread(new ParameterizedThreadStart(_roleEventsHadner.NoPermissions));
                 NoPermissions.Start(info);
                 return false;
@@ -168,6 +171,7 @@ namespace CZGL.Auth.Services
             RoleModel apiResource = _manaRole.GetRoleBeApis(roleName);
             if (apiResource == null)
             {
+                loginfailed = AuthConfig.model.scheme.NoPermissions;
                 Thread NoPermissions = new Thread(new ParameterizedThreadStart(_roleEventsHadner.NoPermissions));
                 NoPermissions.Start(info);
                 return false;

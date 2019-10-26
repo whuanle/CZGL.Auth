@@ -9,9 +9,7 @@ namespace CZGL.Auth.Models
 {
     public static class AuthConfig
     {
-        public static AuthConfigModel model  = new AuthConfigModel();
-        public static AuthConfigModel Auth { get { return model; } }
-
+        public static AuthConfigModel model { get; private set; } = new AuthConfigModel();
 
         /// <summary>
         /// 用于加密的密钥对象
@@ -25,17 +23,7 @@ namespace CZGL.Auth.Models
         /// <param name="authModel">配置类</param>
         public static void Init(AuthConfigModel authModel)
         {
-            model.SecurityKey = authModel.SecurityKey;
-            model.Issuer = authModel.Issuer.ToLower();
-            model.Audience = authModel.Audience.ToLower();
-
-            model.TimeSpan = authModel.TimeSpan;
-
-            model.LoginAction = authModel.LoginAction;
-
-            model.DeniedAction = authModel.DeniedAction;
-            model.IsLoginAction = authModel.IsLoginAction;
-            model.IsDeniedAction = authModel.IsDeniedAction;
+            model = authModel;
         }
 
 

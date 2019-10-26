@@ -32,11 +32,17 @@ namespace CZGL.Auth.Sample2
         {
             services.AddControllers();
             var authOptions = new AuthBuilder()
-                .Security("aaaafsfsfdrhdhrejtrjrt","ASPNETCORE","ASPNETCORE")
-                .Jump("accoun/login","account/error",false,false)
-                .Time(TimeSpan.FromMinutes(20)).Build();
+                .Security("aaaafsfsfdrhdhrejtrjrt", "ASPNETCORE", "ASPNETCORE")
+                .Jump("accoun/login", "account/error", false, false)
+                .Time(TimeSpan.FromMinutes(20))
+                .InfoScheme(new Auth.Models.AuthenticateScheme
+                {
+                    TokenEbnormal = "Login authentication failed!",
+                    TokenIssued = "Login authentication failed!",
+                    NoPermissions = "Login authentication failed!"
+                }).Build();
             services.AddRoleService(authOptions);
-            services.AddSingleton<IRoleEventsHadner,RoleEvents>();
+            services.AddSingleton<IRoleEventsHadner, RoleEvents>();
             services.AddDbContext<UserContext>(Options => Options.UseSqlite("filename=user.db"));
         }
 

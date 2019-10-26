@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZGL.Auth.Sample1", "CZGL.Auth.Sample1\CZGL.Auth.Sample1.csproj", "{23A38140-D231-49AF-AC34-4E8880F75477}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZGL.Auth.old", "CZGL.Auth.old\CZGL.Auth.old.csproj", "{D9E992A9-8805-41BD-A917-7B6D77961EAC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZGL.Auth", "CZGL.Auth\CZGL.Auth.csproj", "{D45901E1-3138-40D7-815E-1C3D2EEF8E14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CZGL.Auth.Sample2", "CZGL.Auth.Sample2\CZGL.Auth.Sample2.csproj", "{C6369CDD-E5B8-4856-9F1F-A87369BDC62E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZGL.Auth.Sample2", "CZGL.Auth.Sample2\CZGL.Auth.Sample2.csproj", "{C6369CDD-E5B8-4856-9F1F-A87369BDC62E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{23A38140-D231-49AF-AC34-4E8880F75477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23A38140-D231-49AF-AC34-4E8880F75477}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23A38140-D231-49AF-AC34-4E8880F75477}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23A38140-D231-49AF-AC34-4E8880F75477}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9E992A9-8805-41BD-A917-7B6D77961EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9E992A9-8805-41BD-A917-7B6D77961EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9E992A9-8805-41BD-A917-7B6D77961EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9E992A9-8805-41BD-A917-7B6D77961EAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D45901E1-3138-40D7-815E-1C3D2EEF8E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D45901E1-3138-40D7-815E-1C3D2EEF8E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D45901E1-3138-40D7-815E-1C3D2EEF8E14}.Release|Any CPU.ActiveCfg = Release|Any CPU

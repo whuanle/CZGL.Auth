@@ -89,7 +89,7 @@ namespace CZGL.Auth.Services
                 issuer: AuthConfig.model.Issuer,
                 audience: AuthConfig.model.Audience,
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(20),
+                expires: DateTime.UtcNow.AddMinutes(AuthConfig.model.TimeSpan.TotalMinutes),
                 signingCredentials: creds); 
             string tokenstr="";
             try

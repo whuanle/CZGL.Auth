@@ -63,7 +63,15 @@ namespace CZGL.Auth.Services
             authModel.IsLoginAction = isLogin;
             authModel.IsDeniedAction = isDenied;
 
+            return this;
+        }
 
+        public AuthBuilder InfoScheme(AuthenticateScheme scheme)
+        {
+            if (scheme == null)
+                return this;
+
+            authModel.scheme = scheme;
             return this;
         }
         /// <summary>

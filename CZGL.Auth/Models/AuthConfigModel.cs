@@ -46,5 +46,10 @@ namespace CZGL.Auth.Models
         /// </summary>
         public string LoginAction { get; set; }
 
+        /// <summary>
+        /// 事件传递对象
+        /// </summary>
+        public AuthenticateScheme scheme { get; set; } = new AuthenticateScheme();
+
     }
 }

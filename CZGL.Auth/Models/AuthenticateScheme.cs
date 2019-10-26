@@ -7,11 +7,6 @@ namespace CZGL.Auth.Models
     public class AuthenticateScheme
     {
         /// <summary>
-        /// 客户端请求时没有携带 Token
-        /// </summary>
-        public string NoToken { get; set; } = "Login authentication failed!";
-
-        /// <summary>
         /// 客户端携带的 Token 不是有效的 Jwt 令牌，将不能被解析
         /// </summary>
         public string TokenEbnormal { get; set; } = "Login authentication failed!";
