@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZGL.Auth", "CZGL.Auth\CZGL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CZGL.Auth.Sample2", "CZGL.Auth.Sample2\CZGL.Auth.Sample2.csproj", "{C6369CDD-E5B8-4856-9F1F-A87369BDC62E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAuth", "MyAuth\MyAuth.csproj", "{1963F1AF-C885-4BA3-8317-9A4DB7E3F7B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C6369CDD-E5B8-4856-9F1F-A87369BDC62E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6369CDD-E5B8-4856-9F1F-A87369BDC62E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6369CDD-E5B8-4856-9F1F-A87369BDC62E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1963F1AF-C885-4BA3-8317-9A4DB7E3F7B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1963F1AF-C885-4BA3-8317-9A4DB7E3F7B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1963F1AF-C885-4BA3-8317-9A4DB7E3F7B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1963F1AF-C885-4BA3-8317-9A4DB7E3F7B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

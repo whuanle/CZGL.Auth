@@ -59,7 +59,7 @@ namespace CZGL.Auth.Services
             var result = await AuthorizationService(context);
             if (result == false)
             {
-                context.Response.StatusCode = 401;
+                context.Response.StatusCode = StatusCode;
                 context.Response.Headers.Add("WWW-Authenticate", new Microsoft.Extensions.Primitives.StringValues(loginfailed));
                 return;
             }

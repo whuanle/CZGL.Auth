@@ -9,7 +9,7 @@
             授权时事件接口，必须使用异步且返回Task
             </summary>
         </member>
-        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.Start(System.Object)">
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.Start(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
             授权开始前
             </summary>
@@ -44,7 +44,7 @@
             <param name="eventsInfo">EventsInfo类型</param>
             <returns></returns>
         </member>
-        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.End(System.Object)">
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.End(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
             授权成功后
             </summary>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -18,7 +19,7 @@ namespace CZGL.Auth.Interface
         /// </summary>
         /// <param name="httpContext">HttpContext</param>
         /// <returns></returns>
-        Task Start(object httpContext);
+        Task Start(HttpContext httpContext);
 
         /// <summary>
         /// 客户端携带的 Token 不是有效的 Jwt 令牌，将不能被解析
@@ -53,7 +54,7 @@ namespace CZGL.Auth.Interface
         /// </summary>
         /// <param name="httpContext">HttpContext</param>
         /// <returns></returns>
-        Task End(object httpContext);
+        Task End(HttpContext httpContext);
     }
 
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace CZGL.Auth.Sample2.Services
+namespace MyAuth
 {
     public class RoleEvents : IRoleEventsHadner
     {
