@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CZGL.Auth</name>
+    </assembly>
+    <members>
+        <member name="T:CZGL.Auth.Interface.IRoleEventsHadner">
+            <summary>
+            授权时事件接口，必须使用异步且返回Task
+            </summary>
+        </member>
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.Start(System.Object)">
+            <summary>
+            授权开始前
+            </summary>
+            <param name="httpContext">HttpContext</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.TokenEbnormal(System.Object)">
+            <summary>
+            客户端携带的 Token 不是有效的 Jwt 令牌，将不能被解析
+            </summary>
+            <param name="eventsInfo">EventsInfo类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.TokenIssued(System.Object)">
+            <summary>
+            令牌解码后，issuer 或 audience不正确
+            </summary>
+            <param name="eventsInfo">EventsInfo类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.NoPermissions(System.Object)">
+            <summary>
+            用户所属的角色中，均无访问API的权限，即无访问此API的权限
+            </summary>
+            <param name="eventsInfo">EventsInfo类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.Success(System.Object)">
+            <summary>
+            授权成功
+            </summary>
+            <param name="eventsInfo">EventsInfo类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Interface.IRoleEventsHadner.End(System.Object)">
+            <summary>
+            授权成功后
+            </summary>
+            <param name="httpContext">HttpContext</param>
+            <returns></returns>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfig.SigningCredentials">
+            <summary>
+            用于加密的密钥对象
+            </summary>
+        </member>
+        <member name="M:CZGL.Auth.Models.AuthConfig.Init(CZGL.Auth.Models.AuthConfigModel)">
+            <summary>
+            初始化
+            </summary>
+            <param name="authModel">配置类</param>
+        </member>
+        <member name="M:CZGL.Auth.Models.AuthConfig.GetTokenValidationParameters">
+            <summary>
+            获取用户 Token 配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.SecurityKey">
+            <summary>
+            加密 Token 的密钥
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.Audience">
+            <summary>
+            订阅人
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.Issuer">
+            <summary>
+            发行人
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.TimeSpan">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.IsDeniedAction">
+            <summary>
+            权限不足时是否跳转到失败页面
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.DeniedAction">
+            <summary>
+            验证失败时跳转到此API
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.IsLoginAction">
+            <summary>
+            未携带验证信息是否跳转到登录页面
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.LoginAction">
+            <summary>
+            未携带任何身份信息时时跳转到登陆API
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthConfigModel.scheme">
+            <summary>
+            事件传递对象
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthenticateScheme.TokenEbnormal">
+            <summary>
+            客户端携带的 Token 不是有效的 Jwt 令牌，将不能被解析
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthenticateScheme.TokenIssued">
+            <summary>
+            令牌解码后，issuer 或 audience不正确
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.AuthenticateScheme.NoPermissions">
+            <summary>
+            用户所属的角色中，均无访问API的权限，即无访问此API的权限
+            </summary>
+        </member>
+        <member name="T:CZGL.Auth.Models.OneApiModel">
+            <summary>
+            一个 API
+            </summary>
+        </member>
+        <member name="T:CZGL.Auth.Models.ResponseToken">
+            <summary>
+            标准Token响应
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.ResponseToken.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.ResponseToken.Access_Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.ResponseToken.Expires_In">
+            <summary>
+            有效时间(秒)
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.ResponseToken.Token_Type">
+            <summary>
+            Token类型(使用jwt)
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.UserModel.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:CZGL.Auth.Models.UserModel.BeRoles">
+            <summary>
+            所属角色
+            </summary>
+        </member>
+        <member name="M:CZGL.Auth.Services.AuthBuilder.Security(System.String,System.String,System.String)">
+            <summary>
+            配置颁发认证
+            </summary>
+            <param name="securityKey">密钥</param>
+            <param name="issuer">颁发者</param>
+            <param name="audience">订阅者</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.AuthBuilder.Time(System.TimeSpan)">
+            <summary>
+            Jwt过期时间
+            </summary>
+            <param name="timeSpan"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.AuthBuilder.Jump(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            配置特殊URL
+            </summary>
+            <param name="loginApi">跳转到登陆URL</param>
+            <param name="logoutApi">注销URL</param>
+            <param name="deniedApi">验证失败跳转URL</param>
+            <param name="isLogin">是否开启跳转登陆</param>
+            <param name="isDenied">验证失败是是否跳转</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.AuthBuilder.Build">
+            <summary>
+            构建配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CZGL.Auth.Services.EncryptionHash">
+            <summary>
+            用于加密生成
+            </summary>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.GetByHashString(System.String,System.Char[])">
+            <summary>
+            获取字符串的哈希值
+            </summary>
+            <param name="source">源字符串</param>
+            <param name="clearChar">需要去除的特殊字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.GetTokenSecurityKey(System.String,System.String)">
+            <summary>
+            将字符串生成密钥
+            </summary>
+            <param name="key">字符串</param>
+            <param name="encryptionType">加密方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.GetByHashString(System.String)">
+            <summary>
+            获取字符串的哈希值
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.BuildToken(System.Security.Claims.Claim[])">
+            <summary>
+            生成jwt令牌
+            </summary>
+            <param name="claims">自定义的claim</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.BuildJwtToken(System.Security.Claims.Claim[])">
+            <summary>
+            生成 JwtSecurityToken
+            </summary>
+            <param name="claims">自定义的claim</param>
+            <returns>JwtSecurityToken</returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.BuildJwtTokenDynamic(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            生成 Token 信息
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>匿名类型</returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.BuildJwtResponseToken(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            生成 Token 信息
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>CZGL.Auth.Models。ResponseToken</returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.BuildJwtToken(System.IdentityModel.Tokens.Jwt.JwtSecurityToken)">
+            <summary>
+            直接生成 Token
+            </summary>
+            <param name="jwt">JWT 令牌</param>
+            <param name="timeSpan">Token过期时间</param>
+            <returns>Token字符串</returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.BuildClaims(System.String,System.String)">
+            <summary>
+            生成身份信息
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="roleName">登录时的角色</param>
+            <param name="audience">订阅者</param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.GetIdentity(System.Security.Claims.Claim[])">
+            <summary>
+            生成用户标识
+            </summary>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.IsCanReadToken(System.String)">
+            <summary>
+            Token是否是符合要求的标准 Json Web 令牌
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.GetJwtSecurityToken(System.String)">
+            <summary>
+            从Token解密出JwtSecurityToken,JwtSecurityToken : SecurityToken
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.EncryptionHash.GetSecurityToken(System.String)">
+            <summary>
+            从 Token 解密出SecurityToken
+            </summary>
+            <param name="tokenStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CZGL.Auth.Services.ManaRole.IsUserToRole(System.String,System.String)">
+            <summary>
+            检查是用户是否属于此角色
+            </summary>
+            <param name="userName">用户名</param>
+            <param name="roleName">角色名</param>
+            <returns></returns>
+        </member>
+        <member name="T:CZGL.Auth.Services.RoleServiceExtension">
+            <summary>
+            角色授权服务
+            </summary>
+        </member>
+        <member name="M:CZGL.Auth.Services.RoleServiceExtension.AddRoleService(Microsoft.Extensions.DependencyInjection.IServiceCollection,CZGL.Auth.Models.AuthConfigModel)">
+            <summary>
+            角色授权服务
+            </summary>
+            <typeparam name="TAuthorizationRequirement">自定义验证的标识</typeparam>
+            <param name="services">服务上下文</param>
+            <param name="authModel">验证授权配置</param>
+            <param name="name">定义策略名称</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

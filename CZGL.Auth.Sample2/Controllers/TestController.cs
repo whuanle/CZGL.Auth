@@ -17,7 +17,7 @@ namespace CZGL.Auth.Sample2.Controllers
     public class TestController : ControllerBase
     {
 
-        [HttpGet("A")]
+        [HttpGet("/A")]
         public JsonResult A()
         {
             return new JsonResult(
@@ -28,7 +28,7 @@ namespace CZGL.Auth.Sample2.Controllers
                 });
         }
 
-        [HttpGet("B")]
+        [HttpGet("/B")]
         public JsonResult B()
         {
             return new JsonResult(
@@ -39,7 +39,7 @@ namespace CZGL.Auth.Sample2.Controllers
                 });
         }
 
-        [HttpGet("C")]
+        [HttpGet("/C")]
         public JsonResult C()
         {
             return new JsonResult(
@@ -49,7 +49,7 @@ namespace CZGL.Auth.Sample2.Controllers
                     Message = "Success!"
                 });
         }
-        [HttpGet("AB")]
+        [HttpGet("/AB")]
         public JsonResult AB()
         {
             return new JsonResult(
@@ -59,7 +59,7 @@ namespace CZGL.Auth.Sample2.Controllers
                     Message = "Success!"
                 });
         }
-        [HttpGet("BC")]
+        [HttpGet("/BC")]
         public JsonResult BC()
         {
             return new JsonResult(
@@ -69,7 +69,7 @@ namespace CZGL.Auth.Sample2.Controllers
                     Message = "Success!"
                 });
         }
-        [HttpGet("AC")]
+        [HttpGet("/AC")]
         public JsonResult AC()
         {
             return new JsonResult(
@@ -79,7 +79,7 @@ namespace CZGL.Auth.Sample2.Controllers
                     Message = "Success!"
                 });
         }
-        [HttpGet("ABC")]
+        [HttpGet("/ABC")]
         public JsonResult ABC()
         {
             return new JsonResult(new { claims = User.Claims });

@@ -20,7 +20,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CZGL.Auth.Sample2.Controllers
 {
-    [AllowAnonymous]
     [Route("[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
